@@ -11,11 +11,10 @@ var app = express();
 //defining where the route details are present
 const route = require('./routes/route');
 
-//connect to mongodb
 mongoose.connect('mongodb://localhost:27017/contactlist');
 
-mongoose.connection.on('connection', ()=>{
-	console.log('Database connection established');
+mongoose.connection.once('open', ()=>{
+	console.log('Database connection established @ 27017');
 });
 
 mongoose.connection.on('error', (err)=>{
